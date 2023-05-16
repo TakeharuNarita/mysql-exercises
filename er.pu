@@ -1,0 +1,113 @@
+@startuml
+
+entity "channel" as channel {
+  + channel_id : int
+  --
+  created_at : datetime
+  channel_name : varchar
+}
+
+entity "schedule" as schedule {
+  + schedule_id : int
+  --
+  created_at : datetime
+  channel_id : int
+  start_time : datetime
+  end_time : datetime
+}
+
+entity "broadcast" as broadcast {
+  + broadcast_id : int
+  --
+  created_at : datetime
+  episode_id : int
+  schedule_id : int
+}
+
+entity "episode" as episode {
+  + episode_id : int
+  --
+  created_at : datetime
+  episode_title : varchar
+  description : text
+  playtime : time
+  on_air : datetime
+  views : int
+  program_id : int
+}
+
+entity "program" as program {
+  + program_id : int
+  --
+  created_at : datetime
+  program_title : varchar
+  description : text
+  season_id : int
+}
+
+entity "season" as season {
+  + season_id : int
+  --
+  created_at : datetime
+  season_name : varchar
+}
+
+entity "series_mapping" as series_mapping {
+  + series_mapping_id : int
+  --
+  created_at : datetime
+  program_id : int
+  series_id : int
+}
+
+entity "series" as series {
+  + series_id : int
+  --
+  created_at : datetime
+  series_name : varchar
+}
+
+entity "genre_mapping" as genre_mapping {
+  + genre_mapping_id : int
+  --
+  created_at : datetime
+  program_id : int
+  genre_id : int
+}
+
+entity "genre" as genre {
+  + genre_id : int
+  --
+  created_at : datetime
+  genre_name : varchar
+}
+
+entity "broadcast_metrics" as broadcast_metrics {
+  + broadcast_metrics_id : int
+  --
+  created_at : datetime
+  broadcast_id : int
+  metrics_marker_function_id : int
+}
+
+entity "metrics_marker_function" as metrics_marker_function {
+  + metrics_marker_function_id : int
+  --
+  created_at : datetime
+  function_name : varchar
+  function : text
+}
+
+schedule }|--|| channel : FK (channel_id)
+broadcast }|--|| schedule : FK (schedule_id)
+broadcast }o--|| episode : FK (episode_id)
+episode }|--|| program : FK (program_id)
+program }|--|| season : FK (season_id)
+series_mapping }o--|| program : FK (program_id)
+series_mapping }o--|| series : FK (series_id)
+genre_mapping }|--|| program : FK (program_id)
+genre_mapping }o--|| genre : FK (genre_id)
+broadcast_metrics }|--|| broadcast : FK (broadcast_id)
+broadcast_metrics }o--|| metrics_marker_function : FK (metrics_marker_function_id)
+
+@enduml
