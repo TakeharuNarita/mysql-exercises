@@ -68,7 +68,6 @@ mysql -u stru -p
 
 ```
 ```sql
-CASCADE
 
 CREATE DATABASE internet_tv;
 USE internet_tv;
