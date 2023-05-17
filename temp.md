@@ -255,7 +255,7 @@ CREATE TABLE episode (
     description TEXT NOT NULL,
     playtime INT NOT NULL,
     on_air DATETIME NOT NULL,
-    views BIGINT,
+    views BIGINT NOT NULL DEFAULT 0,
     program_id INT NOT NULL,
     FOREIGN KEY (program_id) REFERENCES program(program_id)
 );
@@ -286,5 +286,24 @@ CREATE TABLE broadcast_metrics (
 );
 
 
-
+DBMSからデータのアウトプット
+```
 mysqldump -u root -p internet_tv > database_backup.sql
+```
+
+
+### 外部キー制約を満たしながらデータを関連付けるための順序
+
+1. `season`テーブルにデータを追加します。
+2. `series`テーブルにデータを追加します。
+3. `channel`テーブルにデータを追加します。
+4. `genre`テーブルにデータを追加します。
+
+5. `program`テーブルにデータを追加します。
+6. `episode`テーブルにデータを追加します。
+7. `schedule`テーブルにデータを追加します。
+8. `genre_mapping`テーブルにデータを追加します。
+9. `series_mapping`テーブルにデータを追加します。
+10. `metrics_marker_function`テーブルにデータを追加します。
+11. `broadcast`テーブルにデータを追加します。
+12. `broadcast_metrics`テーブルにデータを追加します。
