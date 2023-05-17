@@ -96,7 +96,8 @@ CREATE TABLE program (
     program_title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     season_id INT NOT NULL,
-    FOREIGN KEY (season_id) REFERENCES season(season_id)
+    FOREIGN KEY (season_id) REFERENCES season(season_id) ON DELETE CASCADE
+    FOREIGN KEY (main_genre_id) REFERENCES genre(genre_id) ON DELETE CASCADE
 );
 
 CREATE TABLE episode (
@@ -108,7 +109,7 @@ CREATE TABLE episode (
     on_air DATETIME NOT NULL,
     views BIGINT NOT NULL DEFAULT 0,
     program_id INT NOT NULL,
-    FOREIGN KEY (program_id) REFERENCES program(program_id)
+    FOREIGN KEY (program_id) REFERENCES program(program_id) ON DELETE CASCADE
 );
 
 CREATE TABLE series_mapping (
@@ -142,7 +143,7 @@ CREATE TABLE schedule (
     channel_id INT NOT NULL,
     start_time DATETIME NOT NULL,
     end_time DATETIME NOT NULL,
-    FOREIGN KEY (channel_id) REFERENCES channel(channel_id)
+    FOREIGN KEY (channel_id) REFERENCES channel(channel_id) ON DELETE CASCADE
 );
 
 CREATE TABLE metrics_marker_function (
@@ -157,8 +158,8 @@ CREATE TABLE broadcast (
     created_at DATETIME NOT NULL,
     episode_id INT NOT NULL,
     schedule_id INT NOT NULL,
-    FOREIGN KEY (episode_id) REFERENCES episode(episode_id),
-    FOREIGN KEY (schedule_id) REFERENCES schedule(schedule_id)
+    FOREIGN KEY (episode_id) REFERENCES episode(episode_id) ON DELETE CASCADE,
+    FOREIGN KEY (schedule_id) REFERENCES schedule(schedule_id) ON DELETE CASCADE
 );
 
 CREATE TABLE broadcast_metrics (
@@ -166,8 +167,8 @@ CREATE TABLE broadcast_metrics (
     created_at DATETIME NOT NULL,
     broadcast_id INT NOT NULL,
     metrics_marker_function_id INT NOT NULL,
-    FOREIGN KEY (broadcast_id) REFERENCES broadcast(broadcast_id),
-    FOREIGN KEY (metrics_marker_function_id) REFERENCES metrics_marker_function(metrics_marker_function_id)
+    FOREIGN KEY (broadcast_id) REFERENCES broadcast(broadcast_id) ON DELETE CASCADE,
+    FOREIGN KEY (metrics_marker_function_id) REFERENCES metrics_marker_function(metrics_marker_function_id) ON DELETE CASCADE
 );
 
 
