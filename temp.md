@@ -639,7 +639,10 @@ INSERT
 ！風を追いかけて: 11 (ドラマ)！
 ！星空カフェ: 22 (音楽)！
 ！美食の旅路: 21 (ドキュメンタリー)！
-！密着！アイドル生活: 4 (アニメ)！
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '！密着', '説明文', 40, 'アイドル生活: 4 (アニメ)', 23)
+;
 ！海辺の物語: 11 (ドラマ)！
 ！素晴らしき世界: 11 (ドラマ)！
 ！恋するキッチン: 9 (恋愛番組)！
@@ -1083,4 +1086,3 @@ INSERT
     INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
   VALUES (NOW(), '不思議な世界の探求', '説明文', 40, '2023-05-20 16:00:00', 23)
 ;
-

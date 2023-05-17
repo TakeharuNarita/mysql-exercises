@@ -1006,9 +1006,246 @@ INSERT
 /* シリーズマッピングここまで */
 
 /* ジャンルマッピングここから */
+
 INSERT
-    INTO genre_mapping (created_at, program_id, genre_id)
-  VALUES (NOW(), プログラムID, ジャンルID)
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 1, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 2, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 3, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 4, 21)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 5, 4)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 6, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 7, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 8, 9)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 9, 8)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 10, 10)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 11, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 12, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 13, 12)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 14, 13)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 15, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 16, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 17, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 18, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 19, 21)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 20, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 21, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 22, 21)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 23, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 24, 21)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 25, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 26, 10)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 27, 8)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 28, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 29, 21)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 30, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 31, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 32, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 33, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 34, 9)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 35, 8)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 36, 10)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 37, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 38, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 39, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 40, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 41, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 42, 2)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 43, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 44, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 45, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 46, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 47, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 48, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 49, 22)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 50, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 51, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 52, 8)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 53, 9)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 54, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 55, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 56, 8)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 57, 21)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 58, 8)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 59, 11)
+;
+INSERT
+  INTO genre_mapping (created_at, program_id, genre_id)
+VALUES (NOW(), 60, 11)
 ;
 /* ジャンルマッピングここまで */
 
