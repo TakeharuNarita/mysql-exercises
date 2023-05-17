@@ -68,7 +68,7 @@ mysql -u stru -p
 
 ```
 ```sql
-
+CASCADE
 
 CREATE DATABASE internet_tv;
 USE internet_tv;
@@ -116,8 +116,8 @@ CREATE TABLE series_mapping (
     created_at DATETIME NOT NULL,
     program_id INT NOT NULL,
     series_id INT NOT NULL,
-    FOREIGN KEY (program_id) REFERENCES program(program_id),
-    FOREIGN KEY (series_id) REFERENCES series(series_id)
+    FOREIGN KEY (program_id) REFERENCES program(program_id) ON DELETE CASCADE,
+    FOREIGN KEY (series_id) REFERENCES series(series_id) ON DELETE CASCADE
 );
 
 CREATE TABLE genre_mapping (
@@ -125,8 +125,8 @@ CREATE TABLE genre_mapping (
     created_at DATETIME NOT NULL,
     program_id INT NOT NULL,
     genre_id INT NOT NULL,
-    FOREIGN KEY (program_id) REFERENCES program(program_id),
-    FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
+    FOREIGN KEY (program_id) REFERENCES program(program_id) ON DELETE CASCADE,
+    FOREIGN KEY (genre_id) REFERENCES genre(genre_id) ON DELETE CASCADE
 );
 
 
@@ -174,19 +174,19 @@ CREATE TABLE broadcast_metrics (
 /* シリーズここから */
 INSERT
     INTO series (created_at, series_name)
-  VALUES (NOW(), 'うましろくんシリーズ')
+  VALUES (NOW(), 'Aシリーズ')
 ;
 INSERT
     INTO series (created_at, series_name)
-  VALUES (NOW(), '絶景砂浜シリーズ')
+  VALUES (NOW(), 'Bシリーズ')
 ;
 INSERT
     INTO series (created_at, series_name)
-  VALUES (NOW(), 'コサカ様シリーズ')
+  VALUES (NOW(), 'Cシリーズ')
 ;
 INSERT
     INTO series (created_at, series_name)
-  VALUES (NOW(), 'メロン村シリーズ')
+  VALUES (NOW(), 'Dシリーズ')
 ;
 /* シリーズここまで */
 
@@ -1396,25 +1396,6 @@ SELECT *
   FROM episode e
  INNER JOIN program p ON e.program_id = p.program_id
 ;
-SELECT 
-    p.program_id, 
-    p.program_title, 
-    p.description, 
-    p.season_id, 
-    e.episode_id, 
-    e.episode_title, 
-    e.description, 
-    e.playtime, 
-    e.on_air, 
-    e.views
-FROM 
-    program AS p
-INNER JOIN 
-    episode AS e 
-ON 
-    e.program_id = p.program_id
-;
-
 
 
 INSERT
