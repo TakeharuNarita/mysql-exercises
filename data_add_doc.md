@@ -44,13 +44,14 @@
 
 docker build -t ubsql .
 
-docker run --name dbtest2 -p 53307:3306 -v ~/docker/dbtest:/bind_mount -d ubsql
+docker run --name dbtest2 -p 53307:3306 -v ~/docker/dbtest:/bind_mount -d -it ubsql
 
 docker exec -it dbtest2 bash
 
 service mysql start
 
 DROP DATABASE internet_tv;
+SHOW TABLES;
 
 ```bash
 
@@ -95,7 +96,8 @@ CREATE TABLE program (
     program_title VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     season_id INT NOT NULL,
-    FOREIGN KEY (season_id) REFERENCES season(season_id) ON DELETE CASCADE
+    main_genre_id INT NOT NULL,
+    FOREIGN KEY (season_id) REFERENCES season(season_id) ON DELETE CASCADE,
     FOREIGN KEY (main_genre_id) REFERENCES genre(genre_id) ON DELETE CASCADE
 );
 
@@ -525,245 +527,246 @@ INSERT
 /* シーズンここまで */
 
 /* プログラムここから */
+
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ひかりの森', '説明文', 1)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ひかりの森', '説明文', 1, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '風を追いかけて', '説明文', 2)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '風を追いかけて', '説明文', 2, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '星空カフェ', '説明文', 3)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '星空カフェ', '説明文', 3, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '美食の旅路', '説明文', 4)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '美食の旅路', '説明文', 4, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '密着！アイドル生活', '説明文', 5)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '密着！アイドル生活', '説明文', 5, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '海辺の物語', '説明文', 6)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '海辺の物語', '説明文', 6, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '素晴らしき世界', '説明文', 7)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '素晴らしき世界', '説明文', 7, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '恋するキッチン', '説明文', 8)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '恋するキッチン', '説明文', 8, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ミッドナイト・トーク', '説明文', 9)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ミッドナイト・トーク', '説明文', 9, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ミステリーナイト', '説明文', 10)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ミステリーナイト', '説明文', 10, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '昼下がりの詩', '説明文', 11)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '昼下がりの詩', '説明文', 11, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'フラワーガーデン', '説明文', 12)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'フラワーガーデン', '説明文', 12, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'パワフルスポーツ', '説明文', 13)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'パワフルスポーツ', '説明文', 13, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'グローバルニュース', '説明文', 14)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'グローバルニュース', '説明文', 14, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ハイテク探偵団', '説明文', 15)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ハイテク探偵団', '説明文', 15, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'サンセットドライブ', '説明文', 16)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'サンセットドライブ', '説明文', 16, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'トワイライトメロディー', '説明文', 17)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'トワイライトメロディー', '説明文', 17, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ドキドキ冒険団', '説明文', 18)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ドキドキ冒険団', '説明文', 18, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'おいしいレシピ', '説明文', 19)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'おいしいレシピ', '説明文', 19, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '雪のプリンセス', '説明文', 20)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '雪のプリンセス', '説明文', 20, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '炎のダンス', '説明文', 21)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '炎のダンス', '説明文', 21, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '未来予想図', '説明文', 22)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '未来予想図', '説明文', 22, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ワンダーランド', '説明文', 23)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ワンダーランド', '説明文', 23, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'かわいいペット', '説明文', 24)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'かわいいペット', '説明文', 24, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'マジカルジャーニー', '説明文', 25)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'マジカルジャーニー', '説明文', 25, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'スリリングな夜', '説明文', 26)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'スリリングな夜', '説明文', 26, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'スパイシーライフ', '説明文', 27)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'スパイシーライフ', '説明文', 27, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '夢見るピアノ', '説明文', 28)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '夢見るピアノ', '説明文', 28, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '都市の風景', '説明文', 29)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '都市の風景', '説明文', 29, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '星降る夜に', '説明文', 30)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '星降る夜に', '説明文', 30, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'アクアブルー', '説明文', 31)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'アクアブルー', '説明文', 31, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '音楽の時間', '説明文', 32)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '音楽の時間', '説明文', 32, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'トロピカルパラダイス', '説明文', 33)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'トロピカルパラダイス', '説明文', 33, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ロマンティック・エンカウンター', '説明文', 34)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ロマンティック・エンカウンター', '説明文', 34, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'お笑いチャンピオン', '説明文', 35)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'お笑いチャンピオン', '説明文', 35, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ナイトウォーカーズ', '説明文', 36)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ナイトウォーカーズ', '説明文', 36, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'マジックタイム', '説明文', 37)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'マジックタイム', '説明文', 37, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '花と風の調べ', '説明文', 38)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '花と風の調べ', '説明文', 38, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ファンタジーアイランド', '説明文', 39)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ファンタジーアイランド', '説明文', 39, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '旅する心', '説明文', 40)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '旅する心', '説明文', 40, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'レインボーダンス', '説明文', 41)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'レインボーダンス', '説明文', 41, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'フレッシュモーニング', '説明文', 42)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'フレッシュモーニング', '説明文', 42, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ビューティフル・ハーモニー', '説明文', 43)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ビューティフル・ハーモニー', '説明文', 43, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ハートフルストーリー', '説明文', 44)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ハートフルストーリー', '説明文', 44, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ドリームキャッチャー', '説明文', 45)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ドリームキャッチャー', '説明文', 45, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'スターライトシンフォニー', '説明文', 46)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'スターライトシンフォニー', '説明文', 46, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'プレシャスメモリー', '説明文', 47)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'プレシャスメモリー', '説明文', 47, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'さわやかウィンド', '説明文', 48)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'さわやかウィンド', '説明文', 48, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), '音楽の海', '説明文', 49)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), '音楽の海', '説明文', 49, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'フレンドリータウン', '説明文', 50)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'フレンドリータウン', '説明文', 50, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'マジカルワールド', '説明文', 51)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'マジカルワールド', '説明文', 51, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'スマイル・デイ', '説明文', 52)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'スマイル・デイ', '説明文', 52, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ドキドキ・デート', '説明文', 53)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ドキドキ・デート', '説明文', 53, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'スパークリング・モーメント', '説明文', 54)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'スパークリング・モーメント', '説明文', 54, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ローズガーデン', '説明文', 55)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ローズガーデン', '説明文', 55, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'フレンズ・フォーエバー', '説明文', 56)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'フレンズ・フォーエバー', '説明文', 56, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'シークレット・レシピ', '説明文', 57)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'シークレット・レシピ', '説明文', 57, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ハッピーデイズ', '説明文', 58)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ハッピーデイズ', '説明文', 58, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'スイートドリームス', '説明文', 59)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'スイートドリームス', '説明文', 59, 1)
 ;
 INSERT
-    INTO program (created_at, program_title, description, season_id)
-  VALUES (NOW(), 'ドリーム', '説明文', 60)
+    INTO program (created_at, program_title, description, season_id, main_genre_id)
+  VALUES (NOW(), 'ドリーム', '説明文', 60, 1)
 ;
 /* プログラムここまで */
 
