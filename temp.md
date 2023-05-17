@@ -187,11 +187,10 @@ HIPHOP
 | メトリクスマーカーファンクションテーブル |  このテーブルは各メトリクスマーカーファンクションの情報を保持します。各エントリは一意のID、作成日時、関数名、および関数を持ちます。 |
 
 
-
-CREATE TABLE channel (
-    channel_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE series (
+    series_id INT PRIMARY KEY AUTO_INCREMENT,
     created_at DATETIME NOT NULL,
-    channel_name VARCHAR(255) NOT NULL
+    series_name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE genre (
@@ -200,13 +199,10 @@ CREATE TABLE genre (
     genre_name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE genre_mapping (
-    genre_mapping_id INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE season (
+    season_id INT PRIMARY KEY AUTO_INCREMENT,
     created_at DATETIME NOT NULL,
-    program_id INT NOT NULL,
-    genre_id INT NOT NULL,
-    FOREIGN KEY (program_id) REFERENCES program(program_id),
-    FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
+    season_name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE program (
@@ -216,36 +212,6 @@ CREATE TABLE program (
     description TEXT NOT NULL,
     season_id INT NOT NULL,
     FOREIGN KEY (season_id) REFERENCES season(season_id)
-);
-
-CREATE TABLE schedule (
-    schedule_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
-    channel_id INT NOT NULL,
-    start_time DATETIME NOT NULL,
-    end_time DATETIME NOT NULL,
-    FOREIGN KEY (channel_id) REFERENCES channel(channel_id)
-);
-
-CREATE TABLE season (
-    season_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
-    season_name VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE series (
-    series_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
-    series_name VARCHAR(255) NOT NULL
-);
-
-CREATE TABLE series_mapping (
-    series_mapping_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
-    program_id INT NOT NULL,
-    series_id INT NOT NULL,
-    FOREIGN KEY (program_id) REFERENCES program(program_id),
-    FOREIGN KEY (series_id) REFERENCES series(series_id)
 );
 
 CREATE TABLE episode (
@@ -258,6 +224,40 @@ CREATE TABLE episode (
     views BIGINT NOT NULL DEFAULT 0,
     program_id INT NOT NULL,
     FOREIGN KEY (program_id) REFERENCES program(program_id)
+);
+
+CREATE TABLE series_mapping (
+    series_mapping_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    program_id INT NOT NULL,
+    series_id INT NOT NULL,
+    FOREIGN KEY (program_id) REFERENCES program(program_id),
+    FOREIGN KEY (series_id) REFERENCES series(series_id)
+);
+
+CREATE TABLE genre_mapping (
+    genre_mapping_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    program_id INT NOT NULL,
+    genre_id INT NOT NULL,
+    FOREIGN KEY (program_id) REFERENCES program(program_id),
+    FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
+);
+
+
+CREATE TABLE channel (
+    channel_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    channel_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE schedule (
+    schedule_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    channel_id INT NOT NULL,
+    start_time DATETIME NOT NULL,
+    end_time DATETIME NOT NULL,
+    FOREIGN KEY (channel_id) REFERENCES channel(channel_id)
 );
 
 CREATE TABLE metrics_marker_function (
@@ -294,16 +294,78 @@ mysqldump -u root -p internet_tv > database_backup.sql
 
 ### 外部キー制約を満たしながらデータを関連付けるための順序
 
-1. `season`テーブルにデータを追加します。
-2. `series`テーブルにデータを追加します。
-3. `channel`テーブルにデータを追加します。
-4. `genre`テーブルにデータを追加します。
+<ol>
 
-5. `program`テーブルにデータを追加します。
-6. `episode`テーブルにデータを追加します。
-7. `schedule`テーブルにデータを追加します。
-8. `genre_mapping`テーブルにデータを追加します。
-9. `series_mapping`テーブルにデータを追加します。
-10. `metrics_marker_function`テーブルにデータを追加します。
-11. `broadcast`テーブルにデータを追加します。
-12. `broadcast_metrics`テーブルにデータを追加します。
+<li>`series`テーブルにデータを追加。</li>
+
+```sql
+INSERT INTO series (created_at, series_name) VALUES (NOW(), 'シリーズ名');
+```
+
+<li>`genre`テーブルにデータを追加。</li>
+
+```sql
+INSERT INTO genre (created_at, genre_name) VALUES (NOW(), 'ジャンル名');
+```
+
+<li>`season`テーブルにデータを追加。</li>
+
+```sql
+INSERT INTO season (created_at, season_name) VALUES (NOW(), 'シーズン名');
+```
+
+<li>`program`テーブルにデータを追加。この際、関連するシーズンのIDが必要。</li>
+
+```sql
+INSERT INTO program (created_at, program_title, description, season_id) VALUES (NOW(), 'プログラムタイトル', '説明文', シーズンID);
+```
+
+<li>`episode`テーブルにデータを追加。この際、関連するプログラムのIDが必要。</li>
+
+```sql
+INSERT INTO episode (created_at, episode_title, description, playtime, on_air, program_id) VALUES (NOW(), 'エピソードタイトル', '説明文', プレイタイム, '放送日時', プログラムID);
+```
+
+<li>`series_mapping`テーブルにデータを追加。この際、関連するプログラムとシリーズのIDが必要。</li>
+
+```sql
+INSERT INTO series_mapping (created_at, program_id, series_id) VALUES (NOW(), プログラムID, シリーズID);
+```
+
+<li>`genre_mapping`テーブルにデータを追加。この際、関連するプログラムとジャンルのIDが必要。</li>
+
+```sql
+INSERT INTO genre_mapping (created_at, program_id, genre_id) VALUES (NOW(), プログラムID, ジャンルID);
+```
+
+<li>`channel`テーブルにデータを追加。</li>
+
+```sql
+INSERT INTO channel (created_at, channel_name) VALUES (NOW(), 'チャンネル名');
+```
+
+<li>`schedule`テーブルにデータを追加。この際、関連するチャンネルのIDが必要。</li>
+
+```sql
+INSERT INTO schedule (created_at, channel_id, start_time, end_time) VALUES (NOW(), チャンネルID, '開始時間', '終了時間');
+```
+
+<li>`metrics_marker_function`テーブルにデータを追加。</li>
+
+```sql
+INSERT INTO metrics_marker_function (created_at, function_name, function_content) VALUES (NOW(), '関数名', '関数内容');
+```
+
+<li>`broadcast`テーブルにデータを追加。この際、関連するエピソードとスケジュールのIDが必要。</li>
+
+```sql
+INSERT INTO broadcast (created_at, episode_id, schedule_id) VALUES (NOW(), エピソードID, スケジュールID);
+```
+
+<li>`broadcast_metrics`テーブルにデータを追加。この際、関連する放送とメトリクスマーカー関数のIDが必要。</li>
+
+```sql
+INSERT INTO broadcast_metrics (created_at, broadcast_id, metrics_marker_function_id) VALUES (NOW(), 放送ID, メトリクスマーカー関数ID);
+```
+
+</ol>

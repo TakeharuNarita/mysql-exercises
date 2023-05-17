@@ -40,3 +40,17 @@
 ## 3. データの登録
 
 <br>
+
+
+INSERT INTO series (created_at, series_name) VALUES (NOW(), 'シリーズ名');
+INSERT INTO genre (created_at, genre_name) VALUES (NOW(), 'ジャンル名');
+INSERT INTO season (created_at, season_name) VALUES (NOW(), 'シーズン名');
+INSERT INTO program (created_at, program_title, description, season_id) VALUES (NOW(), 'プログラムタイトル', '説明文', シーズンID);
+INSERT INTO episode (created_at, episode_title, description, playtime, on_air, program_id) VALUES (NOW(), 'エピソードタイトル', '説明文', プレイタイム, '放送日時', プログラムID);
+INSERT INTO series_mapping (created_at, program_id, series_id) VALUES (NOW(), プログラムID, シリーズID);
+INSERT INTO genre_mapping (created_at, program_id, genre_id) VALUES (NOW(), プログラムID, ジャンルID);
+INSERT INTO channel (created_at, channel_name) VALUES (NOW(), 'チャンネル名');
+INSERT INTO schedule (created_at, channel_id, start_time, end_time) VALUES (NOW(), チャンネルID, '開始時間', '終了時間');
+INSERT INTO metrics_marker_function (created_at, function_name, function_content) VALUES (NOW(), '関数名', '関数内容');
+INSERT INTO broadcast (created_at, episode_id, schedule_id) VALUES (NOW(), エピソードID, スケジュールID);
+INSERT INTO broadcast_metrics (created_at, broadcast_id, metrics_marker_function_id) VALUES (NOW(), 放送ID, メトリクスマーカー関数ID);
