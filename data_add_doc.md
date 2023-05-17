@@ -48,6 +48,8 @@ docker run --name dbtest2 -p 53307:3306 -v ~/docker/dbtest:/bind_mount -d ubsql
 
 docker exec -it dbtest2 bash
 
+service mysql start
+
 DROP DATABASE internet_tv;
 
 ```bash
@@ -1374,7 +1376,45 @@ INSERT
   INTO genre_mapping (created_at, program_id, genre_id)
 VALUES (NOW(), 60, 11)
 ;
+
 /* ジャンルマッピングここまで */
+
+SELECT * FROM season;
+SELECT * FROM program;
+SELECT * FROM series;
+SELECT * FROM series_mapping;
+SELECT * FROM genre;
+SELECT * FROM genre_mapping;
+SELECT * FROM episode;
+SELECT * FROM channel;
+SELECT * FROM schedule;
+SELECT * FROM metrics_marker_function;
+SELECT * FROM broadcast;
+SELECT * FROM broadcast_metrics;
+
+SELECT *
+  FROM episode e
+ INNER JOIN program p ON e.program_id = p.program_id
+;
+SELECT 
+    p.program_id, 
+    p.program_title, 
+    p.description, 
+    p.season_id, 
+    e.episode_id, 
+    e.episode_title, 
+    e.description, 
+    e.playtime, 
+    e.on_air, 
+    e.views
+FROM 
+    program AS p
+INNER JOIN 
+    episode AS e 
+ON 
+    e.program_id = p.program_id
+;
+
 
 
 INSERT
