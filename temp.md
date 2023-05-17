@@ -369,3 +369,718 @@ INSERT INTO broadcast_metrics (created_at, broadcast_id, metrics_marker_function
 ```
 
 </ol>
+
+
+1. ストア
+2. 新着
+3. 本日無料
+4. アニメ
+5. MLB
+6. プレミアリーグ
+7. ブンデスリーガ
+8. バラエティ
+9. 恋愛番組
+10. 映画
+11. ドラマ
+12. スポーツ
+13. ニュース
+14. 韓流・華流
+15. K-POP
+16. 将棋
+17. 麻雀
+18. HIPHOP
+19. 格闘
+20. テレ朝見逃し
+21. ドキュメンタリー
+22. 音楽
+
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ひかりの森のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '風を追いかけてのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '星空カフェのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '美食の旅路のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '密着！アイドル生活のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '海辺の物語のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '素晴らしき世界のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '恋するキッチンのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ミッドナイト・トークのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ミステリーナイトのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '昼下がりの詩のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'フラワーガーデンのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'パワフルスポーツのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'グローバルニュースのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ハイテク探偵団のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'サンセットドライブのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'トワイライトメロディーのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ドキドキ冒険団のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'おいしいレシピのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '雪のプリンセスのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '炎のダンスのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '未来予想図のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ワンダーランドのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'かわいいペットのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'マジカルジャーニーのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'スリリングな夜のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'スパイシーライフのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '夢見るピアノのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '都市の風景のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '星降る夜にのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'アクアブルーのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '音楽の時間のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'トロピカルパラダイスのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ロマンティック・エンカウンターのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'お笑いチャンピオンのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ナイトウォーカーズのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'マジックタイムのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '花と風の調べのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ファンタジーアイランドのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '旅する心のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'レインボーダンスのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'フレッシュモーニングのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ビューティフル・ハーモニーのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ハートフルストーリーのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ドリームキャッチャーのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'スターライトシンフォニーのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'プレシャスメモリーのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'さわやかウィンドのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), '音楽の海のシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'フレンドリータウンのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'マジカルワールドのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'スマイル・デイのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ドキドキ・デートのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'スパークリング・モーメントのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ローズガーデンのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'フレンズ・フォーエバーのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'シークレット・レシピのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ハッピーデイズのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'スイートドリームスのシーズン')
+;
+INSERT
+    INTO season (created_at, season_name)
+  VALUES (NOW(), 'ドリームのシーズン')
+;
+
+！ひかりの森: 11 (ドラマ)！
+！風を追いかけて: 11 (ドラマ)！
+！星空カフェ: 22 (音楽)！
+！美食の旅路: 21 (ドキュメンタリー)！
+！密着！アイドル生活: 4 (アニメ)！
+！海辺の物語: 11 (ドラマ)！
+！素晴らしき世界: 11 (ドラマ)！
+！恋するキッチン: 9 (恋愛番組)！
+！ミッドナイト・トーク: 8 (バラエティ)！
+！ミステリーナイト: 10 (映画)！
+！昼下がりの詩: 11 (ドラマ)！
+！フラワーガーデン: 11 (ドラマ)！
+！パワフルスポーツ: 12 (スポーツ)！
+！グローバルニュース: 13 (ニュース)！
+！ハイテク探偵団: 11 (ドラマ)！
+！サンセットドライブ: 22 (音楽)！
+！トワイライトメロディー: 22 (音楽)！
+！ドキドキ冒険団: 11 (ドラマ)！
+！おいしいレシピ: 21 (ドキュメンタリー)！
+！雪のプリンセス: 11 (ドラマ)！
+！炎のダンス: 22 (音楽)！
+！未来予想図: 21 (ドキュメンタリー)！
+！ワンダーランド: 11 (ドラマ)！
+！かわいいペット: 21 (ドキュメンタリー)！
+！マジカルジャーニー: 11 (ドラマ)！
+！スリリングな夜: 10 (映画)！
+！スパイシーライフ: 8 (バラエティ)！
+！夢見るピアノ: 22 (音楽)！
+！都市の風景: 21 (ドキュメンタリー)！
+！星降る夜に: 11 (ドラマ)！
+！アクアブルー: 22 (音楽)！
+！音楽の時間: 22 (音楽)！
+！トロピカルパラダイス: 11 (ドラマ)！
+！ロマンティック・エンカウンター: 9 (恋愛番組)！
+！お笑いチャンピオン: 8 (バラエティ)！
+！ナイトウォーカーズ: 10 (映画)！
+！マジックタイム: 11 (ドラマ)！
+！花と風の調べ: 22 (音楽)！
+！ファンタジーアイランド: 11 (ドラマ)！
+！旅する心: 11 (ドラマ)！
+！レインボーダンス: 22 (音楽)！
+！フレッシュモーニング: 2 (新着)！
+！ビューティフル・ハーモニー: 22 (音楽)！
+！ハートフルストーリー: 11 (ドラマ)！
+！ドリームキャッチャー: 11 (ドラマ)！
+！スターライトシンフォニー: 22 (音楽)！
+！プレシャスメモリー: 11 (ドラマ)！
+！さわやかウィンド: 22 (音楽)！
+！音楽の海: 22 (音楽)！
+！フレンドリータウン: 11 (ドラマ)！
+！マジカルワールド: 11 (ドラマ)！
+！スマイル・デイ: 8 (バラエティ)！
+！ドキドキ・デート: 9 (恋愛番組)！
+！スパークリング・モーメント: 11 (ドラマ)！
+！ローズガーデン: 11 (ドラマ)！
+！フレンズ・フォーエバー: 8 (バラエティ)！
+！シークレット・レシピ: 21 (ドキュメンタリー)！
+！ハッピーデイズ: 8 (バラエティ)！
+！スイートドリームス: 11 (ドラマ)！
+！ドリーム: 11 (ドラマ)！
+
+
+
+ひかりの森
+風を追いかけて
+星空カフェ
+美食の旅路
+密着！アイドル生活
+海辺の物語
+素晴らしき世界
+恋するキッチン
+ミッドナイト・トーク
+ミステリーナイト
+昼下がりの詩
+フラワーガーデン
+パワフルスポーツ
+グローバルニュース
+ハイテク探偵団
+サンセットドライブ
+トワイライトメロディー
+ドキドキ冒険団
+おいしいレシピ
+雪のプリンセス
+炎のダンス
+未来予想図
+ワンダーランド
+かわいいペット
+マジカルジャーニー
+スリリングな夜
+スパイシーライフ
+夢見るピアノ
+都市の風景
+星降る夜に
+アクアブルー
+音楽の時間
+トロピカルパラダイス
+ロマンティック・エンカウンター
+お笑いチャンピオン
+ナイトウォーカーズ
+マジックタイム
+花と風の調べ
+ファンタジーアイランド
+旅する心
+レインボーダンス
+フレッシュモーニング
+ビューティフル・ハーモニー
+ハートフルストーリー
+ドリームキャッチャー
+スターライトシンフォニー
+プレシャスメモリー
+さわやかウィンド
+音楽の海
+フレンドリータウン
+マジカルワールド
+スマイル・デイ
+ドキドキ・デート
+スパークリング・モーメント
+ローズガーデン
+フレンズ・フォーエバー
+シークレット・レシピ
+ハッピーデイズ
+スイートドリームス
+ドリーム
+
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '夜明けの歌', '説明文', 30, '2023-04-20 18:00:00', 1)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '光と影のダンス', '説明文', 30, '2023-04-27 18:00:00', 1)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '森の囁き', '説明文', 30, '2023-05-04 18:00:00', 1)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '秘密の池', '説明文', 30, '2023-05-11 18:00:00', 1)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '風の旅人', '説明文', 45, '2023-04-21 20:00:00', 2)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '遥かなる山々', '説明文', 45, '2023-04-28 20:00:00', 2)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '星空の下で', '説明文', 50, '2023-04-22 22:00:00', 3)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '月明かりの会話', '説明文', 50, '2023-04-29 22:00:00', 3)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '大阪の美食', '説明文', 60, '2023-04-23 20:00:00', 4)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '京都の美食', '説明文', 60, '2023-04-30 20:00:00', 4)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '初ステージ', '説明文', 50, '2023-04-24 20:00:00', 5)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '努力の日々', '説明文', 50, '2023-05-01 20:00:00', 5)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '初恋の予感', '説明文', 50, '2023-05-08 20:00:00', 5)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ライブ前夜', '説明文', 50, '2023-05-15 20:00:00', 5)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '夢のステージ', '説明文', 50, '2023-05-22 20:00:00', 5)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '海辺の思い出', '説明文', 60, '2023-04-25 18:00:00', 6)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '夏の終わり', '説明文', 60, '2023-05-02 18:00:00', 6)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '秋の始まり', '説明文', 60, '2023-05-09 18:00:00', 6)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '冬の訪れ', '説明文', 60, '2023-05-16 18:00:00', 6)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '春の予感', '説明文', 60, '2023-05-23 18:00:00', 6)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '世界の驚き', '説明文', 45, '2023-04-26 19:00:00', 7)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '未知への探求', '説明文', 45, '2023-05-03 19:00:00', 7)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '人類の進歩', '説明文', 45, '2023-05-10 19:00:00', 7)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '文化の交流', '説明文', 45, '2023-05-17 19:00:00', 7)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '大自然の美しさ', '説明文', 45, '2023-05-24 19:00:00', 7)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '初恋のレシピ', '説明文', 40, '2023-04-26 21:00:00', 8)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '母の味', '説明文', 40, '2023-05-03 21:00:00', 8)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '秘密のスパイス', '説明文', 40, '2023-05-10 21:00:00', 8)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '伝統の味', '説明文', 40, '2023-05-17 21:00:00', 8)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '未来の食事', '説明文', 40, '2023-05-24 21:00:00', 8)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '深夜の対話', '説明文', 60, '2023-04-27 00:00:00', 9)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '未明の思索', '説明文', 60, '2023-05-04 00:00:00', 9)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '謎解きの時間', '説明文', 45, '2023-04-27 21:00:00', 10)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '暗闇の秘密', '説明文', 45, '2023-05-04 21:00:00', 10)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '太陽の下で', '説明文', 30, '2023-04-28 13:00:00', 11)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '春風の中で', '説明文', 30, '2023-05-05 13:00:00', 11)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '花々の美学', '説明文', 40, '2023-04-28 14:00:00', 12)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '緑の風景', '説明文', 40, '2023-05-05 14:00:00', 12)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '熱戦の舞台', '説明文', 90, '2023-04-28 19:00:00', 13)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '挑戦の瞬間', '説明文', 90, '2023-05-05 19:00:00', 13)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '世界の動き', '説明文', 30, '2023-04-29 20:00:00', 13)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '新たな局面', '説明文', 30, '2023-05-06 20:00:00', 13)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep1', '説明文', 30, '2023-05-06 20:00:00', 14)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep2', '説明文', 30, '2023-05-08 20:00:00', 14)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep3', '説明文', 30, '2023-05-10 20:00:00', 14)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep4', '説明文', 30, '2023-05-12 20:00:00', 14)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep5', '説明文', 30, '2023-05-14 20:00:00', 14)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep6', '説明文', 30, '2023-05-16 20:00:00', 14)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep7', '説明文', 30, '2023-05-18 20:00:00', 14)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep8', '説明文', 30, '2023-05-20 20:00:00', 14)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep9', '説明文', 30, '2023-05-22 20:00:00', 14)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep1', '説明文', 30, '2023-05-22 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep2', '説明文', 30, '2023-06-12 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep3', '説明文', 30, '2023-06-22 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep4', '説明文', 30, '2023-07-12 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep5', '説明文', 30, '2023-07-22 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep6', '説明文', 30, '2023-08-12 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep7', '説明文', 30, '2023-08-22 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep8', '説明文', 30, '2023-09-12 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep9', '説明文', 30, '2023-09-22 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep10', '説明文', 30, '2023-10-16 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep11', '説明文', 30, '2023-10-26 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep12', '説明文', 30, '2023-11-16 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep13', '説明文', 30, '2023-11-26 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ep14', '説明文', 30, '2023-12-16 20:00:00', 15)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '夕暮れのドライブ', '説明文', 60, '2023-04-30 18:00:00', 16)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '星空下のドライブ', '説明文', 60, '2023-05-07 18:00:00', 16)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '夜の調べ', '説明文', 50, '2023-04-30 22:00:00', 17)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '夜明け前の旋律', '説明文', 50, '2023-05-07 22:00:00', 17)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '冒険への招待', '説明文', 40, '2023-04-29 16:00:00', 18)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '新たなる挑戦', '説明文', 40, '2023-05-06 16:00:00', 18)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '美味しいレシピの秘密', '説明文', 30, '2023-05-13 19:00:00', 19)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '冬の料理特集', '説明文', 30, '2023-05-20 19:00:00', 19)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '雪のプリンセスの目覚め', '説明文', 45, '2023-05-14 20:00:00', 20)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '冬の王国の冒険', '説明文', 45, '2023-05-21 20:00:00', 20)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '炎のダンスチャレンジ', '説明文', 60, '2023-05-13 21:00:00', 21)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ダンスバトル決定戦', '説明文', 60, '2023-05-20 21:00:00', 21)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '未来の可能性', '説明文', 50, '2023-05-14 22:00:00', 22)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '技術の進化', '説明文', 50, '2023-05-21 22:00:00', 22)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), 'ワンダーランドの旅', '説明文', 40, '2023-05-13 16:00:00', 23)
+;
+INSERT
+    INTO episode (created_at, episode_title, description, playtime, on_air, program_id)
+  VALUES (NOW(), '不思議な世界の探求', '説明文', 40, '2023-05-20 16:00:00', 23)
+;
+
