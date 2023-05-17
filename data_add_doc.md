@@ -62,7 +62,7 @@ mysql -u root -p
 
 SET NAMES utf8mb4;
 CREATE USER 'stru'@'localhost' IDENTIFIED BY 'ctured';
-GRANT ALL PRIVILEGES ON *.* TO 'stru'@'localhost';
+GRANT ALL PRIVILEGES ON *.* TO 'stru'@'%';
 FLUSH PRIVILEGES;
 exit
 mysql -u stru -p
