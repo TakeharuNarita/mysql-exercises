@@ -41,7 +41,134 @@
 
 <br>
 
+
+docker build -t ubsql .
+
+docker run --name dbtest2 -p 53307:3306 -v ~/docker/dbtest:/bind_mount -d ubsql
+
+docker exec -it dbtest2 bash
+
+DROP DATABASE internet_tv;
+
+```bash
+
+docker run --name dbtest2 -e MYSQL_ROOT_PASSWORD=test123 -p 53307:3306 -v ~/docker/dbtest:/bind_mount -d mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+docker exec -it dbtest2 bash
+
+mysql -u root -p
+
+SET NAMES utf8mb4;
+CREATE USER 'stru'@'localhost' IDENTIFIED BY 'ctured';
+GRANT ALL PRIVILEGES ON *.* TO 'stru'@'localhost';
+FLUSH PRIVILEGES;
+exit
+mysql -u stru -p
+
+```
 ```sql
+
+
+CREATE DATABASE internet_tv;
+USE internet_tv;
+CREATE TABLE series (
+    series_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    series_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE genre (
+    genre_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    genre_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE season (
+    season_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    season_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE program (
+    program_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    program_title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    season_id INT NOT NULL,
+    FOREIGN KEY (season_id) REFERENCES season(season_id)
+);
+
+CREATE TABLE episode (
+    episode_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    episode_title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    playtime INT NOT NULL,
+    on_air DATETIME NOT NULL,
+    views BIGINT NOT NULL DEFAULT 0,
+    program_id INT NOT NULL,
+    FOREIGN KEY (program_id) REFERENCES program(program_id)
+);
+
+CREATE TABLE series_mapping (
+    series_mapping_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    program_id INT NOT NULL,
+    series_id INT NOT NULL,
+    FOREIGN KEY (program_id) REFERENCES program(program_id),
+    FOREIGN KEY (series_id) REFERENCES series(series_id)
+);
+
+CREATE TABLE genre_mapping (
+    genre_mapping_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    program_id INT NOT NULL,
+    genre_id INT NOT NULL,
+    FOREIGN KEY (program_id) REFERENCES program(program_id),
+    FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
+);
+
+
+CREATE TABLE channel (
+    channel_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    channel_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE schedule (
+    schedule_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    channel_id INT NOT NULL,
+    start_time DATETIME NOT NULL,
+    end_time DATETIME NOT NULL,
+    FOREIGN KEY (channel_id) REFERENCES channel(channel_id)
+);
+
+CREATE TABLE metrics_marker_function (
+    metrics_marker_function_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    function_name VARCHAR(255) NOT NULL,
+    function_content TEXT NOT NULL
+);
+
+CREATE TABLE broadcast (
+    broadcast_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    episode_id INT NOT NULL,
+    schedule_id INT NOT NULL,
+    FOREIGN KEY (episode_id) REFERENCES episode(episode_id),
+    FOREIGN KEY (schedule_id) REFERENCES schedule(schedule_id)
+);
+
+CREATE TABLE broadcast_metrics (
+    broadcast_metrics_id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME NOT NULL,
+    broadcast_id INT NOT NULL,
+    metrics_marker_function_id INT NOT NULL,
+    FOREIGN KEY (broadcast_id) REFERENCES broadcast(broadcast_id),
+    FOREIGN KEY (metrics_marker_function_id) REFERENCES metrics_marker_function(metrics_marker_function_id)
+);
+
+
 /* シリーズここから */
 INSERT
     INTO series (created_at, series_name)
