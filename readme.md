@@ -3,7 +3,7 @@
 
 MySQLの学習を行う上でインターネットテレビのデータベース作成を行った記録です。
 
-![itv.png](https://gyazo.com/0bb7001306f82fef4b1428ab3a3853e6.png)
+![itv.png](https://gyazo.com/ce5493d717bb65ed0c989b4f020549eb.png)
 
 
 <ol>
@@ -237,6 +237,8 @@ MySQLの学習を行う上でインターネットテレビのデータベース
 
 
 ## <li>手順のドキュメント</li>
+
+[データベースの設計と操作手順について](./data_add_doc.md)
 
 ## <li>データの抽出</li>
 
