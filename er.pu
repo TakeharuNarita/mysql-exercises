@@ -43,6 +43,7 @@ entity "program" as program {
   program_title : varchar
   description : text
   season_id : int
+  genre_id : int
 }
 
 entity "season" as season {
@@ -103,9 +104,10 @@ broadcast }|--|| schedule : FK (schedule_id)
 broadcast }o--|| episode : FK (episode_id)
 episode }|--|| program : FK (program_id)
 program }|--|| season : FK (season_id)
+program }|--|| genre : FK (genre_id)
 series_mapping }o--|| program : FK (program_id)
-series_mapping }o--|| series : FK (series_id)
-genre_mapping }|--|| program : FK (program_id)
+series_mapping }|--|| series : FK (series_id)
+genre_mapping }o--|| program : FK (program_id)
 genre_mapping }o--|| genre : FK (genre_id)
 broadcast_metrics }|--|| broadcast : FK (broadcast_id)
 broadcast_metrics }o--|| metrics_marker_function : FK (metrics_marker_function_id)
