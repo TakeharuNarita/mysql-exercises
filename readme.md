@@ -320,14 +320,23 @@ SELECT ch.channel_name
   <text><br>
 
 ```sql
-SELECT s.start_time, s.end_time, COUNT(DISTINCT p.season_id) as seasons, COUNT(e.episode_id) as episodes, e.episode_title, e.description
-FROM channel ch
-INNER JOIN schedule s ON s.channel_id = ch.channel_id
-INNER JOIN broadcast b ON b.schedule_id = s.schedule_id
-INNER JOIN episode e ON e.episode_id = b.episode_id
-INNER JOIN program p ON p.program_id = e.program_id
-WHERE ch.channel_name = 'Drama' AND s.start_time BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
-GROUP BY s.start_time, s.end_time, e.episode_title, e.description;
+SELECT s.start_time
+     , s.end_time
+     , COUNT(DISTINCT p.season_id) as seasons
+     , COUNT(e.episode_id) as episodes
+     , e.episode_title
+     , e.description
+  FROM channel ch
+ INNER JOIN schedule s ON s.channel_id = ch.channel_id
+ INNER JOIN broadcast b ON b.schedule_id = s.schedule_id
+ INNER JOIN episode e ON e.episode_id = b.episode_id
+ INNER JOIN program p ON p.program_id = e.program_id
+ WHERE ch.channel_name = 'Drama' AND s.start_time BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
+ GROUP BY s.start_time
+        , s.end_time
+        , e.episode_title
+        , e.description
+;
 ```
 
   <br></text>
@@ -340,13 +349,15 @@ GROUP BY s.start_time, s.end_time, e.episode_title, e.description;
   <text><br>
 
 ```sql
-SELECT p.program_title, SUM(e.views) as total_views
-FROM program p
-INNER JOIN episode e ON e.program_id = p.program_id
-WHERE e.on_air BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE()
-GROUP BY p.program_title
-ORDER BY total_views DESC
-LIMIT 2;
+SELECT p.program_title
+     , SUM(e.views) as total_views
+  FROM program p
+ INNER JOIN episode e ON e.program_id = p.program_id
+ WHERE e.on_air BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE()
+ GROUP BY p.program_title
+ ORDER BY total_views DESC
+ LIMIT 2
+;
 ```
 
   <br></text>
@@ -359,13 +370,17 @@ LIMIT 2;
   <text><br>
 
 ```sql
-SELECT g.genre_name, p.program_title, AVG(e.views) as avg_views
-FROM genre g
-INNER JOIN genre_mapping gm ON gm.genre_id = g.genre_id
-INNER JOIN program p ON p.program_id = gm.program_id
-INNER JOIN episode e ON e.program_id = p.program_id
-GROUP BY g.genre_name, p.program_title
-ORDER BY avg_views DESC;
+SELECT g.genre_name
+     , p.program_title
+     , AVG(e.views) as avg_views
+  FROM genre g
+ INNER JOIN genre_mapping gm ON gm.genre_id = g.genre_id
+ INNER JOIN program p ON p.program_id = gm.program_id
+ INNER JOIN episode e ON e.program_id = p.program_id
+ GROUP BY g.genre_name
+        , p.program_title
+ ORDER BY avg_views DESC
+;
 ```
 
   <br></text>

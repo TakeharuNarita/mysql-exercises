@@ -46,16 +46,16 @@
 docker build -t ubsql .
 docker run --name dbtest -p 53306:3306 -v ~/docker/dbtest:/bind_mount -d -it ubsql
 docker exec -it dbtest bash
+mysql -u root -p
 ```
 
 MySQLの設定を行う。
 
 ```sql
-mysql -u root -p
 SET NAMES utf8mb4;
-CREATE USER 'stru'@'localhost' IDENTIFIED BY 'ctured';
 
 /* 下記では、全ての権限を持つユーザーに全てのドメインからアクセスを許可しています。 */
+CREATE USER 'stru'@'%' IDENTIFIED BY 'ctured';
 GRANT ALL PRIVILEGES ON *.* TO 'stru'@'%';
 
 FLUSH PRIVILEGES;
@@ -82,6 +82,8 @@ mysql -h 192.168.1.131 -P 53306 -u stru -p
 ```sql
 CREATE DATABASE internet_tv;
 USE internet_tv;
+SHOW DATABASES;
+SELECT DATABASE();
 ```
 
 ### チャンネル
@@ -310,6 +312,7 @@ CREATE TABLE broadcast_metrics (
    ,FOREIGN KEY (broadcast_id) REFERENCES broadcast(broadcast_id) ON DELETE CASCADE
    ,FOREIGN KEY (metrics_marker_function_id) REFERENCES metrics_marker_function(metrics_marker_function_id) ON DELETE CASCADE
 );
+SHOW TABLES;
 ```
 
 <br>
@@ -322,7 +325,8 @@ CREATE TABLE broadcast_metrics (
 
 ```sql
 INSERT INTO series (created_at, series_name)
-VALUES (NOW(), 'Series 1'), (NOW(), 'Series 2');
+VALUES (NOW(), 'Series 1'), (NOW(), 'Series 2')
+;
 ```
 <br>
 
@@ -330,7 +334,8 @@ VALUES (NOW(), 'Series 1'), (NOW(), 'Series 2');
 
 ```sql
 INSERT INTO genre (created_at, genre_name)
-VALUES (NOW(), 'Action'), (NOW(), 'Comedy'), (NOW(), 'Drama');
+VALUES (NOW(), 'Action'), (NOW(), 'Comedy'), (NOW(), 'Drama')
+;
 ```
 <br>
 
@@ -338,7 +343,8 @@ VALUES (NOW(), 'Action'), (NOW(), 'Comedy'), (NOW(), 'Drama');
 
 ```sql
 INSERT INTO season (created_at, season_name)
-VALUES (NOW(), 'Season 1'), (NOW(), 'Season 2');
+VALUES (NOW(), 'Season 1'), (NOW(), 'Season 2')
+;
 ```
 <br>
 
@@ -349,7 +355,8 @@ VALUES
 (NOW(), 'Program 1', 'Program 1 Description', 1, 1),
 (NOW(), 'Program 2', 'Program 2 Description', 2, 2),
 (NOW(), 'Program 3', 'Program 3 Description', 1, 3),
-(NOW(), 'Program 4', 'Program 4 Description', 2, 3);
+(NOW(), 'Program 4', 'Program 4 Description', 2, 3)
+;
 ```
 <br>
 
@@ -358,7 +365,8 @@ VALUES
 INSERT INTO series_mapping (created_at, program_id, series_id)
 VALUES 
 (NOW(), 1, 1),
-(NOW(), 2, 2);
+(NOW(), 2, 2)
+;
 ```
 <br>
 
@@ -369,7 +377,8 @@ VALUES
 (NOW(), 1, 1),
 (NOW(), 2, 2),
 (NOW(), 3, 3),
-(NOW(), 4, 3);
+(NOW(), 4, 3)
+;
 ```
 <br>
 
@@ -380,14 +389,16 @@ VALUES
 (NOW(), 'Episode 1', 'Episode 1 Description', 60, NOW(), 1000, 1),
 (NOW(), 'Episode 2', 'Episode 2 Description', 90, NOW(), 2000, 2),
 (NOW(), 'Episode 3', 'Episode 3 Description', 45, NOW(), 3000, 3),
-(NOW(), 'Episode 4', 'Episode 4 Description', 120, NOW(), 4000, 4);
+(NOW(), 'Episode 4', 'Episode 4 Description', 120, NOW(), 4000, 4)
+;
 ```
 <br>
 
 - `channel` テーブルへの追加: 'Channel 1'と'Channel 2'という新しいチャンネルを追加。作成日時は現在の時刻。
 ```sql
 INSERT INTO channel (created_at, channel_name)
-VALUES (NOW(), 'Channel 1'), (NOW(), 'Channel 2');
+VALUES (NOW(), 'Channel 1'), (NOW(), 'Channel 2')
+;
 ```
 <br>
 
@@ -396,7 +407,8 @@ VALUES (NOW(), 'Channel 1'), (NOW(), 'Channel 2');
 INSERT INTO schedule (created_at, channel_id, start_time, end_time)
 VALUES 
 (NOW(), 1, NOW(), DATE_ADD(NOW(), INTERVAL 1 HOUR)),
-(NOW(), 2, DATE_ADD(NOW(), INTERVAL 1 HOUR), DATE_ADD(NOW(), INTERVAL 2 HOUR));
+(NOW(), 2, DATE_ADD(NOW(), INTERVAL 1 HOUR), DATE_ADD(NOW(), INTERVAL 2 HOUR))
+;
 ```
 <br>
 
@@ -407,7 +419,8 @@ VALUES
 (NOW(), 1, 1),
 (NOW(), 2, 2),
 (NOW(), 3, 1),
-(NOW(), 4, 2);
+(NOW(), 4, 2)
+;
 ```
 <br>
 
@@ -416,7 +429,8 @@ VALUES
 INSERT INTO metrics_marker_function (created_at, function_name, function_content)
 VALUES 
 (NOW(), 'Metrics Function 1', 'Function Content 1'),
-(NOW(), 'Metrics Function 2', 'Function Content 2');
+(NOW(), 'Metrics Function 2', 'Function Content 2')
+;
 ```
 <br>
 
@@ -425,7 +439,8 @@ VALUES
 INSERT INTO broadcast_metrics (created_at, broadcast_id, metrics_marker_function_id)
 VALUES 
 (NOW(), 1, 1),
-(NOW(), 2, 2);
+(NOW(), 2, 2)
+;
 ```
 <br>
 
