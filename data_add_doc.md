@@ -15,21 +15,29 @@
 ドキュメントコミュニケーション力を上げる事
  -->
 
-# 本データベースの設計と操作手順について
+# データベースの設計と操作手順について
 
 ## 目次
 
-1. [データベースの設計と構築](#1-データベースの設計と構築)
-    1. [データベースの設計](#11-データベースの設計)
-    2. [データベースの構築](#12-データベースの構築)
+1. [データベースの設計と構築](#11-データベースの設計)
 2. [テーブルの作成](#2-テーブルの作成)
 3. [データの登録](#3-データの登録)
 
 ## 1. データベースの設計と構築
 
+![itv.png](https://gyazo.com/0bb7001306f82fef4b1428ab3a3853e6.png)
+
 ### 1.1. データベースの設計
 
+外部キー制約による依存関係がある為、テーブルの作成・データの追加は図において下から上へ行う。
+
+例として、スケジュールテーブルに追加する場合、チャンネルテーブルの存在は必要で、エピソードテーブル以下への操作は不要。
+
+<br>
+
 ### 1.2. データベースの構築
+
+
 
 <br>
 
@@ -40,6 +48,80 @@
 ## 3. データの登録
 
 <br>
+
+
+-- Add series
+INSERT INTO series (created_at, series_name)
+VALUES (NOW(), 'Series 1'), (NOW(), 'Series 2');
+
+-- Add genres
+INSERT INTO genre (created_at, genre_name)
+VALUES (NOW(), 'Action'), (NOW(), 'Comedy'), (NOW(), 'Drama');
+
+-- Add seasons
+INSERT INTO season (created_at, season_name)
+VALUES (NOW(), 'Season 1'), (NOW(), 'Season 2');
+
+-- Add programs
+INSERT INTO program (created_at, program_title, description, season_id, main_genre_id)
+VALUES 
+(NOW(), 'Program 1', 'Program 1 Description', 1, 1),
+(NOW(), 'Program 2', 'Program 2 Description', 2, 2),
+(NOW(), 'Program 3', 'Program 3 Description', 1, 3),
+(NOW(), 'Program 4', 'Program 4 Description', 2, 3);
+
+-- Add episodes
+INSERT INTO episode (created_at, episode_title, description, playtime, on_air, views, program_id)
+VALUES 
+(NOW(), 'Episode 1', 'Episode 1 Description', 60, NOW(), 1000, 1),
+(NOW(), 'Episode 2', 'Episode 2 Description', 90, NOW(), 2000, 2),
+(NOW(), 'Episode 3', 'Episode 3 Description', 45, NOW(), 3000, 3),
+(NOW(), 'Episode 4', 'Episode 4 Description', 120, NOW(), 4000, 4);
+
+-- Add series mapping
+INSERT INTO series_mapping (created_at, program_id, series_id)
+VALUES 
+(NOW(), 1, 1),
+(NOW(), 2, 2);
+
+-- Add genre mapping
+INSERT INTO genre_mapping (created_at, program_id, genre_id)
+VALUES 
+(NOW(), 1, 1),
+(NOW(), 2, 2),
+(NOW(), 3, 3),
+(NOW(), 4, 3);
+
+-- Add channels
+INSERT INTO channel (created_at, channel_name)
+VALUES (NOW(), 'Channel 1'), (NOW(), 'Channel 2');
+
+-- Add schedules
+INSERT INTO schedule (created_at, channel_id, start_time, end_time)
+VALUES 
+(NOW(), 1, NOW(), DATE_ADD(NOW(), INTERVAL 1 HOUR)),
+(NOW(), 2, DATE_ADD(NOW(), INTERVAL 1 HOUR), DATE_ADD(NOW(), INTERVAL 2 HOUR));
+
+-- Add metrics marker function
+INSERT INTO metrics_marker_function (created_at, function_name, function_content)
+VALUES 
+(NOW(), 'Metrics Function 1', 'Function Content 1'),
+(NOW(), 'Metrics Function 2', 'Function Content 2');
+
+-- Add broadcast
+INSERT INTO broadcast (created_at, episode_id, schedule_id)
+VALUES 
+(NOW(), 1, 1),
+(NOW(), 2, 2),
+(NOW(), 3, 1),
+(NOW(), 4, 2);
+
+-- Add broadcast metrics
+INSERT INTO broadcast_metrics (created_at, broadcast_id, metrics_marker_function_id)
+VALUES 
+(NOW(), 1, 1),
+(NOW(), 2, 2);
+
 
 
 docker build -t ubsql .
