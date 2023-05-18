@@ -331,7 +331,7 @@ SELECT s.start_time
  INNER JOIN broadcast b ON b.schedule_id = s.schedule_id
  INNER JOIN episode e ON e.episode_id = b.episode_id
  INNER JOIN program p ON p.program_id = e.program_id
- WHERE ch.channel_name = 'Drama' AND s.start_time BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
+ WHERE ch.channel_name = 'ドラマ1' OR ch.channel_name = 'ドラマ2'  AND s.start_time BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
  GROUP BY s.start_time
         , s.end_time
         , e.episode_title
