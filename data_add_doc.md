@@ -22,6 +22,7 @@
 1. [データベースの設計と構築](#11-データベースの設計)
 2. [データベースとテーブルの作成](#2-データベースとテーブルの作成)
 3. [データの追加](#3-データの追加)
+4. [サンプルデータ](#4-サンプルデータ)
 
 ## 1. データベースの設計と構築
 
@@ -317,77 +318,119 @@ CREATE TABLE broadcast_metrics (
 
 冒頭に言った順序に沿って解説。
 
--- Add series
+- `series` テーブルへの追加: 'Series 1'と'Series 2'という名前の新しいシリーズを追加。作成日時は現在の時刻（NOW()）。
+
+```sql
 INSERT INTO series (created_at, series_name)
 VALUES (NOW(), 'Series 1'), (NOW(), 'Series 2');
+```
+<br>
 
--- Add genres
+- `genre` テーブルへの追加: 'Action'、'Comedy'、'Drama'という新しいジャンルを追加。作成日時は現在の時刻。
+
+```sql
 INSERT INTO genre (created_at, genre_name)
 VALUES (NOW(), 'Action'), (NOW(), 'Comedy'), (NOW(), 'Drama');
+```
+<br>
 
--- Add seasons
+- `season` テーブルへの追加: 'Season 1'と'Season 2'という新しいシーズンを追加。作成日時は現在の時刻。
+
+```sql
 INSERT INTO season (created_at, season_name)
 VALUES (NOW(), 'Season 1'), (NOW(), 'Season 2');
+```
+<br>
 
--- Add programs
+- `program` テーブルへの追加: 4つの新しいプログラムを追加。各プログラムには作成日時、プログラムタイトル、説明、シーズンID、メインジャンルIDが含まれる。
+```sql
 INSERT INTO program (created_at, program_title, description, season_id, main_genre_id)
 VALUES 
 (NOW(), 'Program 1', 'Program 1 Description', 1, 1),
 (NOW(), 'Program 2', 'Program 2 Description', 2, 2),
 (NOW(), 'Program 3', 'Program 3 Description', 1, 3),
 (NOW(), 'Program 4', 'Program 4 Description', 2, 3);
+```
+<br>
 
--- Add episodes
-INSERT INTO episode (created_at, episode_title, description, playtime, on_air, views, program_id)
-VALUES 
-(NOW(), 'Episode 1', 'Episode 1 Description', 60, NOW(), 1000, 1),
-(NOW(), 'Episode 2', 'Episode 2 Description', 90, NOW(), 2000, 2),
-(NOW(), 'Episode 3', 'Episode 3 Description', 45, NOW(), 3000, 3),
-(NOW(), 'Episode 4', 'Episode 4 Description', 120, NOW(), 4000, 4);
-
--- Add series mapping
+- `series_mapping` テーブルへの追加: プログラムとシリーズのマッピングを追加。作成日時、プログラムID、シリーズIDが含まれる。
+```sql
 INSERT INTO series_mapping (created_at, program_id, series_id)
 VALUES 
 (NOW(), 1, 1),
 (NOW(), 2, 2);
+```
+<br>
 
--- Add genre mapping
+- `genre_mapping` テーブルへの追加: プログラムとジャンルのマッピングを追加。作成日時、プログラムID、ジャンルIDが含まれる。
+```sql
 INSERT INTO genre_mapping (created_at, program_id, genre_id)
 VALUES 
 (NOW(), 1, 1),
 (NOW(), 2, 2),
 (NOW(), 3, 3),
 (NOW(), 4, 3);
+```
+<br>
 
--- Add channels
+- `episode` テーブルへの追加: 4つの新しいエピソードを追加。各エピソードには作成日時、エピソードタイトル、説明、再生時間、放送時間、視聴数、プログラムIDが含まれる。
+```sql
+INSERT INTO episode (created_at, episode_title, description, playtime, on_air, views, program_id)
+VALUES 
+(NOW(), 'Episode 1', 'Episode 1 Description', 60, NOW(), 1000, 1),
+(NOW(), 'Episode 2', 'Episode 2 Description', 90, NOW(), 2000, 2),
+(NOW(), 'Episode 3', 'Episode 3 Description', 45, NOW(), 3000, 3),
+(NOW(), 'Episode 4', 'Episode 4 Description', 120, NOW(), 4000, 4);
+```
+<br>
+
+- `channel` テーブルへの追加: 'Channel 1'と'Channel 2'という新しいチャンネルを追加。作成日時は現在の時刻。
+```sql
 INSERT INTO channel (created_at, channel_name)
 VALUES (NOW(), 'Channel 1'), (NOW(), 'Channel 2');
+```
+<br>
 
--- Add schedules
+- `schedule` テーブルへの追加: 2つの新しいスケジュールを追加。各スケジュールには作成日時、チャンネルID、開始時間、終了時間が含まれる。
+```sql
 INSERT INTO schedule (created_at, channel_id, start_time, end_time)
 VALUES 
 (NOW(), 1, NOW(), DATE_ADD(NOW(), INTERVAL 1 HOUR)),
 (NOW(), 2, DATE_ADD(NOW(), INTERVAL 1 HOUR), DATE_ADD(NOW(), INTERVAL 2 HOUR));
+```
+<br>
 
--- Add metrics marker function
-INSERT INTO metrics_marker_function (created_at, function_name, function_content)
-VALUES 
-(NOW(), 'Metrics Function 1', 'Function Content 1'),
-(NOW(), 'Metrics Function 2', 'Function Content 2');
-
--- Add broadcast
+- `broadcast` テーブルへの追加: 4つの新しい放送を追加。各放送には作成日時、エピソードID、スケジュールIDが含まれる。
+```sql
 INSERT INTO broadcast (created_at, episode_id, schedule_id)
 VALUES 
 (NOW(), 1, 1),
 (NOW(), 2, 2),
 (NOW(), 3, 1),
 (NOW(), 4, 2);
+```
+<br>
 
--- Add broadcast metrics
+- `metrics_marker_function` テーブルへの追加: 2つの新しいメトリクスマーカー関数を追加。各関数には作成日時、関数名、関数内容が含まれる。
+```sql
+INSERT INTO metrics_marker_function (created_at, function_name, function_content)
+VALUES 
+(NOW(), 'Metrics Function 1', 'Function Content 1'),
+(NOW(), 'Metrics Function 2', 'Function Content 2');
+```
+<br>
+
+- `broadcast_metrics`  テーブルへの追加: 2つの新しい放送メトリクスを追加。各放送メトリクスには作成日時、放送ID、メトリクスマーカー関数IDが含まれる。
+```sql
 INSERT INTO broadcast_metrics (created_at, broadcast_id, metrics_marker_function_id)
 VALUES 
 (NOW(), 1, 1),
 (NOW(), 2, 2);
+```
+<br>
+
+
+
 
 
 
@@ -517,7 +560,7 @@ INSERT
 ;
 INSERT
     INTO genre (created_at, genre_name)
-  VALUES (NOW(), 'テレ朝見逃し')
+  VALUES (NOW(), '見逃し')
 ;
 INSERT
     INTO genre (created_at, genre_name)
@@ -1668,3 +1711,5 @@ INSERT
   VALUES (NOW(), 放送ID, メトリクスマーカー関数ID)
 ;
 ```
+
+## 4. サンプルデータ
