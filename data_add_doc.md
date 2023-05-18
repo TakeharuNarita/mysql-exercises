@@ -27,6 +27,8 @@
 
 ![itv.png](https://gyazo.com/0bb7001306f82fef4b1428ab3a3853e6.png)
 
+
+
 ### 1.1. データベースの設計
 
 外部キー制約による依存関係がある為、テーブルの作成・データの追加は図において下から上へ行う。
@@ -35,17 +37,174 @@
 
 <br>
 
-### 1.2. データベースの構築
+### 1.2. DBMSの構築
 
+同じディレクトリにあるDockerfileをビルドし、コンテナを起動する。
+
+```bash
+docker build -t ubsql .
+docker run --name dbtest -p 53306:3306 -v ~/docker/dbtest:/bind_mount -d -it ubsql
+docker exec -it dbtest bash
+```
+
+MySQLの設定を行う。
+
+```sql
+mysql -u root -p
+SET NAMES utf8mb4;
+CREATE USER 'stru'@'localhost' IDENTIFIED BY 'ctured';
+
+/* 下記では、全ての権限を持つユーザーに全てのドメインからアクセスを許可しています。 */
+GRANT ALL PRIVILEGES ON *.* TO 'stru'@'%';
+
+FLUSH PRIVILEGES;
+exit
+```
+
+ポートから通信する準備を行ったので、ここからはMySQLのサーバー内から操作する必要はない。
+
+MySQLはデフォルトで3306ポートを使用するが、コンテナのポートを53306にマッピングしている為、接続時にそのポート番号を指定する。
+
+```bash
+mysql -h 192.168.1.131 -P 53306 -u stru -p
+```
+
+ログインできればDBMSの設定は完了。
 
 
 <br>
 
-## 2. テーブルの作成
+## 2. データベースの作成
+
+## 3. テーブルの作成
+
+
+### チャンネル
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+| チャンネルID  |INT           |1   |1   |1   |   |    |1   |   |    |
+| クリエイトat  |datetime      |    |1   |    |   |    |    |   |    |
+| チャンネル名  |VARCHAR(255)  |    |1   |    |   |    |    |   |    |
+
+
+### スケジュール
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+| スケジュールID|INT           |1   |1   |1   |   |    |1   |   |    |
+| クリエイトat  |datetime      |    |1   |    |   |    |    |   |    |
+| チャンネルID  |INT           |    |1   |    |   |    |    |   |1   |
+| 放送開始at    |datetime      |    |1   |    |   |    |    |   |    |
+| 放送終了at    |datetime      |    |1   |    |   |    |    |   |    |
+
+
+### ブロードキャスト
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+| ブロードキャストID|INT       |1   |1   |1   |   |    |1   |   |    |
+| クリエイトat  |datetime      |    |1   |    |   |    |    |   |    |
+| エピソードID  |INT           |    |1   |    |   |    |    |   |1   |
+| スケジュールID|INT           |    |1   |    |   |    |    |   |1   |
+
+
+### エピソード
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+| エピソードID  |INT           |1   |1   |1   |   |    |1   |   |    |
+| クリエイトat  |datetime      |    |1   |    |   |    |    |   |    |
+|エピソードタイトル|VARCHAR(255)|   |1   |    |   |    |    |   |    |
+| description   |text          |    |1   |    |   |    |    |   |    |
+| 再生時間      |INT           |    |1   |    |   |    |    |   |    |
+| オンエアat    |datetime      |    |1   |    |   |    |    |   |    |
+| view_count    |INT           |    |1   |    |   |    |    |   |    |
+| プログラムID  |INT           |    |1   |    |   |    |    |   |1   |
+
+
+### プログラム
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+| プログラムID  |INT           |1   |1   |1   |   |    |1   |   |    |
+| クリエイトat  |datetime      |    |1   |    |   |    |    |   |    |
+|プログラムタイトル|VARCHAR(255)|   |1   |    |   |    |    |   |    |
+| description   |text          |    |1   |    |   |    |    |   |    |
+| シーズンID    |INT           |    |1   |    |   |    |    |   |1   |
+|メインジャンルID|INT          |    |1   |    |   |    |    |   |1   |
+
+
+### シーズン
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+| シーズンID    |INT           |1   |1   |1   |   |    |1   |   |    |
+| クリエイトat  |datetime      |    |1   |    |   |    |    |   |    |
+| シーズン名    |VARCHAR(255)  |    |1   |    |   |    |    |   |    |
+
+
+### シリーズマッピング
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+|シリーズマッピングID    |INT  |1   |1   |1   |   |    |1   |   |    |
+| クリエイトat  |datetime      |    |1   |    |   |    |    |   |    |
+| プログラムID  |INT           |    |1   |    |   |    |    |   |1   |
+| シリーズID    |INT           |    |1   |    |   |    |    |   |1   |
+
+
+### シリーズ
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+| シリーズID    |INT           |1   |1   |1   |   |    |1   |   |    |
+| クリエイトat  |datetime      |    |1   |    |   |    |    |   |    |
+| シリーズ名    |VARCHAR(255)  |    |1   |    |   |    |    |   |    |
+
+
+### ジャンルマッピング
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+| ジャンルマッピングID|INT     |1   |1   |1   |   |    |1   |   |    |
+| クリエイトat  |datetime      |    |1   |    |   |    |    |   |    |
+| プログラムID  |INT           |    |1   |    |   |    |    |   |1   |
+| ジャンルID    |INT           |    |1   |    |   |    |    |   |1   |
+
+
+
+### ジャンル
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+| ジャンルID    |INT           |1   |1   |1   |   |    |1   |   |    |
+| クリエイトat  |datetime      |    |1   |    |   |    |    |   |    |
+| ジャンル名    |VARCHAR(255)  |    |1   |    |   |    |    |   |    |
+
+
+### ブロードキャストメトリクス
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+|ブロードキャストメトリクスID|INT|1 |1   |1   |   |    |1   |   |    |
+|クリエイトat   |datetime      |    |1   |    |   |    |    |   |    |
+|ブロードキャストID|INT        |    |1   |    |   |    |    |   |1   |
+|メトリクスマーカーファンクションID|INT||1|   |   |    |    |   |1   |
+
+
+### メトリクスマーカーファンクション
+
+| Column        | Datatipe     | PK | NN | UQ | B | ZF | AI | G | FK |
+|-              |-             |:-: |:-: |:-: |:-:|:-: |:-: |:-:|:-: |
+|メトリクスマーカーファンクションID|INT|1|1|1 |   |    |1   |   |    |
+|クリエイトat   |datetime      |    |1   |    |   |    |    |   |    |
+|ファンクション名|VARCHAR(255) |    |1   |    |   |    |    |   |    |
+|ファンクション|text           |    |1   |    |   |    |    |   |    |
 
 <br>
 
-## 3. データの登録
+## 4. データの登録
 
 <br>
 
@@ -125,10 +284,9 @@ VALUES
 
 
 docker build -t ubsql .
-
-docker run --name dbtest2 -p 53307:3306 -v ~/docker/dbtest:/bind_mount -d -it ubsql
-
-docker exec -it dbtest2 bash
+docker run --name dbtest -p 53306:3306 -v ~/docker/dbtest:/bind_mount -d -it ubsql
+docker exec -it dbtest bash
+mysql -u root -p
 
 service mysql start
 
