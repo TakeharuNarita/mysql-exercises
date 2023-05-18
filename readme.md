@@ -3,12 +3,238 @@
 
 MySQLの学習を行う上でインターネットテレビのデータベース作成を行った記録です。
 
-![itv.png](https://gyazo.com/bfbada0ccae21d0011a85b5dbbc666ea.png)
+![itv.png](https://gyazo.com/0bb7001306f82fef4b1428ab3a3853e6.png)
 
 
 <ol>
 
 ## <li>テーブル設計</li>
+
+<details>
+  <summary>a. テーブル：series</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|series_id            |INT             |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|series_name          |VARCHAR(255)    |    |          |        |              |
+
+
+  <br></text>
+
+</details>
+<br><details>
+  <summary>b. テーブル：genre</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|genre_id             |INT             |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|genre_name           |VARCHAR(255)    |    |          |        |              |
+
+
+  <br></text>
+
+</details>
+<br><details>
+  <summary>c. テーブル：season</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|season_id            |INT             |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|season_name          |VARCHAR(255)    |    |          |        |              |
+
+
+  <br></text>
+
+</details>
+<br><details>
+  <summary>d. テーブル：program</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|program_id           |INT             |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|program_title        |VARCHAR(255)    |    |          |        |              |
+|description          |TEXT            |    |          |        |              |
+|season_id            |INT             |    |          |        |              |
+|main_genre_id        |INT             |    |          |        |              |
+
+- 外部キー制約：season_id に対して season(season_id)、main_genre_id に対して genre(genre_id) から設定
+
+
+  <br></text>
+
+</details>
+<br><details>
+  <summary>e. テーブル：episode</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|episode_id           |INT             |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|episode_title        |VARCHAR(255)    |    |          |        |              |
+|description          |TEXT            |    |          |        |              |
+|playtime             |INT             |    |          |        |              |
+|on_air               |DATETIME        |    |          |        |              |
+|views                |BIGINT          |    |          |0       |              |
+|program_id           |INT             |    |          |        |              |
+
+- 外部キー制約：program_id に対して program(program_id) から設定
+
+
+  <br></text>
+
+</details>
+<br><details>
+  <summary>f. テーブル：series_mapping</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|series_mapping_id    |INT             |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|program_id           |INT             |    |          |        |              |
+|series_id            |INT             |    |          |        |              |
+
+- 外部キー制約：program_id に対して program(program_id)、series_id に対して series(series_id) から設定
+
+
+  <br></text>
+
+</details>
+<br><details>
+  <summary>g. テーブル：genre_mapping</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|genre_mapping_id     |INT             |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|program_id           |INT             |    |          |        |              |
+|genre_id             |INT             |    |          |        |              |
+
+- 外部キー制約：program_id
+
+ に対して program(program_id)、genre_id に対して genre(genre_id) から設定
+
+
+  <br></text>
+
+</details>
+<br><details>
+  <summary>h. テーブル：channel</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|channel_id           |INT             |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|channel_name         |VARCHAR(255)    |    |          |        |              |
+
+
+  <br></text>
+
+</details>
+<br><details>
+  <summary>i. テーブル：schedule</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|schedule_id          |INT             |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|channel_id           |INT             |    |          |        |              |
+|start_time           |DATETIME        |    |          |        |              |
+|end_time             |DATETIME        |    |          |        |              |
+
+- 外部キー制約：channel_id に対して channel(channel_id) から設定
+
+
+  <br></text>
+
+</details>
+<br><details>
+  <summary>j. テーブル：metrics_marker_function</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|metrics_marker_function_id|INT        |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|function_name        |VARCHAR(255)    |    |          |        |              |
+|function_content     |TEXT            |    |          |        |              |
+
+
+  <br></text>
+
+</details>
+<br><details>
+  <summary>k. テーブル：broadcast</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|broadcast_id         |INT             |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|episode_id           |INT             |    |          |        |              |
+|schedule_id          |INT             |    |          |        |              |
+
+- 外部キー制約：episode_id に対して episode(episode_id)、schedule_id に対して schedule(schedule_id) から設定
+
+
+  <br></text>
+
+</details>
+<br><details>
+  <summary>l. テーブル：broadcast_metrics</summary>
+
+  <text><br>
+
+
+|カラム名             |データ型        |NULL|キー      |初期値  |AUTO INCREMENT|
+|:-:                  |:-:             |:-: |:-:       |:-:     |:-:           |
+|broadcast_metrics_id |INT             |    |PRIMARY   |        |YES           |
+|created_at           |DATETIME        |    |          |        |              |
+|broadcast_id         |INT             |    |          |        |              |
+|metrics_marker_function_id|INT        |    |          |        |              |
+
+- 外部キー制約：broadcast_id に対して broadcast(broadcast_id)、metrics_marker_function_id に対して metrics_marker_function(metrics_marker_function_id) から設定
+
+
+  <br></text>
+
+</details>
+<br>
+
 
 ## <li>手順のドキュメント</li>
 
