@@ -212,100 +212,100 @@ USE internet_tv;
 
 ```sql
 CREATE TABLE series (
-    series_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
+      series_id INT PRIMARY KEY AUTO_INCREMENT,
+     created_at DATETIME NOT NULL,
     series_name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE genre (
-    genre_id INT PRIMARY KEY AUTO_INCREMENT,
+      genre_id INT PRIMARY KEY AUTO_INCREMENT,
     created_at DATETIME NOT NULL,
     genre_name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE season (
-    season_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
+      season_id INT PRIMARY KEY AUTO_INCREMENT,
+     created_at DATETIME NOT NULL,
     season_name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE program (
-    program_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
+       program_id INT PRIMARY KEY AUTO_INCREMENT,
+       created_at DATETIME NOT NULL,
     program_title VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
-    season_id INT NOT NULL,
+      description TEXT NOT NULL,
+        season_id INT NOT NULL,
     main_genre_id INT NOT NULL,
     FOREIGN KEY (season_id) REFERENCES season(season_id) ON DELETE CASCADE,
     FOREIGN KEY (main_genre_id) REFERENCES genre(genre_id) ON DELETE CASCADE
 );
 
 CREATE TABLE episode (
-    episode_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
+       episode_id INT PRIMARY KEY AUTO_INCREMENT,
+       created_at DATETIME NOT NULL,
     episode_title VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
-    playtime INT NOT NULL,
-    on_air DATETIME NOT NULL,
-    views BIGINT NOT NULL DEFAULT 0,
-    program_id INT NOT NULL,
+      description TEXT NOT NULL,
+         playtime INT NOT NULL,
+           on_air DATETIME NOT NULL,
+            views BIGINT NOT NULL DEFAULT 0,
+       program_id INT NOT NULL,
     FOREIGN KEY (program_id) REFERENCES program(program_id) ON DELETE CASCADE
 );
 
 CREATE TABLE series_mapping (
     series_mapping_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
-    program_id INT NOT NULL,
-    series_id INT NOT NULL,
+           created_at DATETIME NOT NULL,
+           program_id INT NOT NULL,
+            series_id INT NOT NULL,
     FOREIGN KEY (program_id) REFERENCES program(program_id) ON DELETE CASCADE,
     FOREIGN KEY (series_id) REFERENCES series(series_id) ON DELETE CASCADE
 );
 
 CREATE TABLE genre_mapping (
     genre_mapping_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
-    program_id INT NOT NULL,
-    genre_id INT NOT NULL,
+          created_at DATETIME NOT NULL,
+          program_id INT NOT NULL,
+            genre_id INT NOT NULL,
     FOREIGN KEY (program_id) REFERENCES program(program_id) ON DELETE CASCADE,
     FOREIGN KEY (genre_id) REFERENCES genre(genre_id) ON DELETE CASCADE
 );
 
 
 CREATE TABLE channel (
-    channel_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
+      channel_id INT PRIMARY KEY AUTO_INCREMENT,
+      created_at DATETIME NOT NULL,
     channel_name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE schedule (
     schedule_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
-    channel_id INT NOT NULL,
-    start_time DATETIME NOT NULL,
-    end_time DATETIME NOT NULL,
+     created_at DATETIME NOT NULL,
+     channel_id INT NOT NULL,
+     start_time DATETIME NOT NULL,
+       end_time DATETIME NOT NULL,
     FOREIGN KEY (channel_id) REFERENCES channel(channel_id) ON DELETE CASCADE
 );
 
 CREATE TABLE metrics_marker_function (
     metrics_marker_function_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
-    function_name VARCHAR(255) NOT NULL,
-    function_content TEXT NOT NULL
+                    created_at DATETIME NOT NULL,
+                 function_name VARCHAR(255) NOT NULL,
+              function_content TEXT NOT NULL
 );
 
 CREATE TABLE broadcast (
     broadcast_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
-    episode_id INT NOT NULL,
-    schedule_id INT NOT NULL,
+      created_at DATETIME NOT NULL,
+      episode_id INT NOT NULL,
+     schedule_id INT NOT NULL,
     FOREIGN KEY (episode_id) REFERENCES episode(episode_id) ON DELETE CASCADE,
     FOREIGN KEY (schedule_id) REFERENCES schedule(schedule_id) ON DELETE CASCADE
 );
 
 CREATE TABLE broadcast_metrics (
-    broadcast_metrics_id INT PRIMARY KEY AUTO_INCREMENT,
-    created_at DATETIME NOT NULL,
-    broadcast_id INT NOT NULL,
+          broadcast_metrics_id INT PRIMARY KEY AUTO_INCREMENT,
+                    created_at DATETIME NOT NULL,
+                  broadcast_id INT NOT NULL,
     metrics_marker_function_id INT NOT NULL,
     FOREIGN KEY (broadcast_id) REFERENCES broadcast(broadcast_id) ON DELETE CASCADE,
     FOREIGN KEY (metrics_marker_function_id) REFERENCES metrics_marker_function(metrics_marker_function_id) ON DELETE CASCADE
