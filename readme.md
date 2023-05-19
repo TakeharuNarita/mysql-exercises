@@ -226,6 +226,7 @@ MySQLの学習を行う上でインターネットテレビのデータベース
 |created_at           |DATETIME        |    |          |        |              |
 |broadcast_id         |INT             |    |          |        |              |
 |metrics_marker_function_id|INT        |    |          |        |              |
+|metrics_value        |INT             |    |          |        |              |
 
 - 外部キー制約：broadcast_id に対して broadcast(broadcast_id)、metrics_marker_function_id に対して metrics_marker_function(metrics_marker_function_id) から設定
 

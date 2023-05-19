@@ -200,6 +200,7 @@ SELECT DATABASE();
 |クリエイトat   |datetime      |    |1   |    |   |    |    |   |    |
 |ブロードキャストID|INT        |    |1   |    |   |    |    |   |1   |
 |メトリクスマーカーファンクションID|INT||1|   |   |    |    |   |1   |
+|メトリクス値   |INT           |    |1   |    |   |    |    |   |    |
 
 
 ### メトリクスマーカーファンクション
@@ -311,6 +312,7 @@ CREATE TABLE broadcast_metrics (
                    ,created_at DATETIME NOT NULL
                  ,broadcast_id INT NOT NULL
    ,metrics_marker_function_id INT NOT NULL
+   ,metrics_value INT NOT NULL
    ,FOREIGN KEY (broadcast_id) REFERENCES broadcast(broadcast_id) ON DELETE CASCADE
    ,FOREIGN KEY (metrics_marker_function_id) REFERENCES metrics_marker_function(metrics_marker_function_id) ON DELETE CASCADE
 );
@@ -443,10 +445,10 @@ VALUES
 
 - `broadcast_metrics`  テーブルへの追加: 2つの新しい放送メトリクスを追加。各放送メトリクスには作成日時、放送ID、メトリクスマーカー関数IDが含まれる。
 ```sql
-INSERT INTO broadcast_metrics (created_at, broadcast_id, metrics_marker_function_id)
+INSERT INTO broadcast_metrics (created_at, broadcast_id, metrics_marker_function_id, metrics_value)
 VALUES 
-(NOW(), 1, 1),
-(NOW(), 2, 2)
+(NOW(), 1, 1, 123),
+(NOW(), 2, 2, 456)
 ;
 ```
 <br>
