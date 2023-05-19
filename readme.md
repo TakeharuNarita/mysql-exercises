@@ -256,6 +256,13 @@ SELECT e.episode_title, e.views
 ;
 ```
 
+| episode_title | views     |
+|-|-|
+| ep3           | 999946789 |
+| ep14          | 999733455 |
+| ep8           | 999537708 |
+
+
   <br></text>
 
 </details>
@@ -271,13 +278,20 @@ SELECT p.program_title
      , COUNT(e.episode_id) as episodes
      , e.episode_title
      , e.views
-  FROM program p
- INNER JOIN episode e ON e.program_id = p.program_id
+  FROM program
+ INNER JOIN episode e ON e.program_id = program.program_id
  GROUP BY p.program_id, e.episode_title, e.views
  ORDER BY e.views DESC
  LIMIT 3
 ;
 ```
+
+| program_title                             | seasons | episodes | episode_title | views     |
+|-|-|-|-|-|
+| 素晴らしき世界 シーズン11                 |       1 |        1 | ep3           | 999946789 |
+| 夢見るピアノ シーズン2                    |       1 |        1 | ep14          | 999733455 |
+| スイートドリームス シーズン2              |       1 |        1 | ep8           | 999537708 |
+
 
   <br></text>
 
@@ -291,7 +305,7 @@ SELECT p.program_title
 ```sql
 SELECT ch.channel_name
      , s.start_time
-     , s.end_time
+     , TIME(s.end_time) as end_time
      , COUNT(DISTINCT p.season_id) as seasons
      , COUNT(e.episode_id) as episodes
      , e.episode_title
@@ -304,10 +318,11 @@ SELECT ch.channel_name
  WHERE DATE(s.start_time) = CURDATE()
  GROUP BY ch.channel_name
         , s.start_time
-        , s.end_time
+        , end_time
         , e.episode_title
         , e.description
 ;
+
 ```
 
   <br></text>
@@ -331,7 +346,7 @@ SELECT s.start_time
  INNER JOIN broadcast b ON b.schedule_id = s.schedule_id
  INNER JOIN episode e ON e.episode_id = b.episode_id
  INNER JOIN program p ON p.program_id = e.program_id
- WHERE ch.channel_name = 'ドラマ1' OR ch.channel_name = 'ドラマ2'  AND s.start_time BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
+ WHERE (ch.channel_name = 'ドラマ1' OR ch.channel_name = 'ドラマ2')  AND s.start_time BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 7 DAY)
  GROUP BY s.start_time
         , s.end_time
         , e.episode_title
