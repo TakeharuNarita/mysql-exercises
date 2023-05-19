@@ -312,7 +312,7 @@ CREATE TABLE broadcast_metrics (
                    ,created_at DATETIME NOT NULL
                  ,broadcast_id INT NOT NULL
    ,metrics_marker_function_id INT NOT NULL
-   ,metrics_value INT NOT NULL
+                ,metrics_value INT NOT NULL
    ,FOREIGN KEY (broadcast_id) REFERENCES broadcast(broadcast_id) ON DELETE CASCADE
    ,FOREIGN KEY (metrics_marker_function_id) REFERENCES metrics_marker_function(metrics_marker_function_id) ON DELETE CASCADE
 );
