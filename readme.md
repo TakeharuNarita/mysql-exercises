@@ -659,6 +659,22 @@ SELECT s.start_time
 
   <text><br>
 
+
+
+```sql
+SELECT *
+  FROM episode e
+  JOIN program p ON e.program_id = p.program_id
+  JOIN broadcast b ON e.episode_id = b.episode_id
+  JOIN schedule s ON b.schedule_id = s.schedule_id
+  JOIN channel c ON s.channel_id = c.channel_id
+  INNER JOIN broadcast_metrics bm ON b.broadcast_id = bm.broadcast_id
+  INNER JOIN metrics_marker_function mmf ON bm.metrics_marker_function_id = mmf.metrics_marker_function_id
+ ORDER BY views DESC
+ LIMIT 20
+;
+```
+
 ```sql
 SELECT p.program_title
      , SUM(e.views) as total_views
