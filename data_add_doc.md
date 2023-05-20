@@ -25,7 +25,7 @@
 
 ## 1. データベースの設計と構築
 
-![itv.png](https://gyazo.com/0bb7001306f82fef4b1428ab3a3853e6.png)
+![itv.png](https://gyazo.com/0bd4981c98041ed9770f720a2410d161.png)
 
 
 

@@ -89,6 +89,7 @@ entity "broadcast_metrics" as broadcast_metrics {
   created_at : datetime
   broadcast_id : int
   metrics_marker_function_id : int
+  metrics_value : int
 }
 
 entity "metrics_marker_function" as metrics_marker_function {
