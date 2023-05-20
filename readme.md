@@ -689,6 +689,42 @@ SELECT p.program_title
   <text><br>
 
 ```sql
+SELECT *
+  FROM genre g
+  JOIN program p ON p.main_genre_id = g.genre_id
+  JOIN genre_mapping gm ON gm.program_id = p.program_id
+  JPIN genre g2 ON g2.genre_id = gm.genre_id
+;
+```
+
+```sql
+SELECT 
+    genre_name, 
+    program_title, 
+    average_views,
+    rn
+FROM (
+    SELECT 
+        g.genre_name, 
+        p.program_title, 
+        AVG(e.views) AS average_views,
+        ROW_NUMBER() OVER (PARTITION BY g.genre_name ORDER BY AVG(e.views) DESC) as rn
+    FROM 
+        genre g
+    JOIN 
+        program p ON p.main_genre_id = g.genre_id
+    JOIN 
+        episode e ON e.program_id = p.program_id
+    GROUP BY 
+        g.genre_name, p.program_title
+) t
+WHERE 
+    rn <= 10;
+
+
+```
+
+```sql
 SELECT g.genre_name
      , p.program_title
      , AVG(e.views) as average_views
@@ -700,6 +736,7 @@ GROUP BY g.genre_name
 ORDER BY
          g.genre_name DESC
        ,  average_views DESC
+LIMIT 10
 ;
 ```
 
