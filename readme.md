@@ -819,6 +819,7 @@ SELECT genre_name
   - テーブル名やカラム名の命名規則が確立されていない
   - `metrics_marker_function.function_content`にはおそらくパラメーターしか入らない為、text型では無く新たにテーブルを作成して、そこにパラメーターを格納するべきだった。
   - メインジャンルカラムを作成した事による欠陥。
-  - SQLスタイルガイドに基づく命名規則の理解不足、特に、集合名詞、複数形。
+  - [SQLスタイルガイド · SQL style guide by Simon Holywell](https://www.sqlstyle.guide/ja/)における命名規則の理解不足。（集合名詞、複数形）
+
 
 <ol>
